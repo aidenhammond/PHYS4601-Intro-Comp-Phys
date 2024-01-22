@@ -17,11 +17,8 @@ These are sample results that are enough to support my conclusion:
 | X | Y | O |
 |---|---|---|
 | 1 | 2 | 3 |
-|---|---|---|
 | 2 | 4 | 6 |
-|---|---|---|
 | 3 | 1 | 4 |
-|---|---|---|
 ## Discussion
 ### What do the results mean?
 These results can be verified using basic arithmetic, meaning that
