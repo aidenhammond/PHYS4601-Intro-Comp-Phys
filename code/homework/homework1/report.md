@@ -1,6 +1,6 @@
 <!-- Created by Aiden Hammond -->
 <!-- Note: Remember to comment your code -->
-# Title
+# PHYS6601 Homework 1 - Finding sum of odd integers between 0 and 32
 ## Introduction
 ### What is the problem?
 Write a computer program in Fortran77 to evaluate the sum of the odd integers between 0 and 32. You must run the program on *Teaching Cluster* to determine the answer. Your report should include the answers to the following questions:
