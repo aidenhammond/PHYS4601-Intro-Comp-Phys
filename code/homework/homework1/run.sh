@@ -9,4 +9,4 @@
 
 cd $SLURM_SUBMIT_DIR
 gfortran *.f
-./a.out
+time ./a.out
