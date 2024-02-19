@@ -48,7 +48,7 @@ cc                        WRITE(*,*) FCLOSEDLOOPFORMS
         IMPLICIT NONE
 
         INTEGER :: N, NUMCOMP
-        NUMCOMP = 3
+        NUMCOMP = 1000
         N = 2
         CALL COMPARISONLOOP(NUMCOMP, N)
 
