@@ -7,16 +7,18 @@
 #SBATCH --time=0:01:00
 #SBATCH --output=summary.log
 
-cd $SLURM_SUBMIT_DIR
+#cd $SLURM_SUBMIT_DIR
+
 module load GCC/12.3.0
 module load gnuplot/5.4.4-GCCcore-11.3.0
-gfortran *.f
+
+gfortran -std=legacy eval_inf_series.f
+
 time ./a.out
 
 DATAFILE="comparisons.dat"
 
 OUTPUTFILE="comparisons_plot.png"
-
 gnuplot -persist <<-EOFMarker
     set title "Comparison of Series Approximation Error"
     set xlabel "Index"
@@ -24,7 +26,6 @@ gnuplot -persist <<-EOFMarker
     set grid
     set term png
     set output "$OUTPUTFILE"
-    plot "$DATAFILE" using 1:2 with linespoints title 'Differences', \
-         "" using 1:2 with labels notitle offset char 1,1
+    plot "$DATAFILE" using 1:2 with linespoints title 'Differences'
     set output
 EOFMarker

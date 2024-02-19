@@ -30,8 +30,8 @@ cc Main DO loop. Continues while X is in domain (-1, 1)
                         ENDDO
                         FCLOSEDLOOPFORMS = 1 / ( 1 - X )
                         DIFF = S - FCLOSEDLOOPFORMS
-                        WRITE(*,*) S
-                        WRITE(*,*) FCLOSEDLOOPFORMS
+cc                        WRITE(*,*) S
+cc                        WRITE(*,*) FCLOSEDLOOPFORMS
                         COMPARISONS(I) = DIFF
                         X = X + DX
                         I = I + 1
