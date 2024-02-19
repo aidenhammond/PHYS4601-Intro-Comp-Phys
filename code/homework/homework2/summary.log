@@ -1,0 +1,17 @@
+
+The following have been reloaded with a version change:
+  1) GCCcore/12.3.0 => GCCcore/11.3.0
+  2) zlib/1.2.13-GCCcore-12.3.0 => zlib/1.2.12-GCCcore-11.3.0
+
+  0.750000000    
+  0.666666687    
+   1.00000000    
+   1.00000000    
+   1.75000000    
+   2.00000000    
+
+real	0m0.016s
+user	0m0.001s
+sys	0m0.005s
+         line 0: Not enough columns for this style
+
