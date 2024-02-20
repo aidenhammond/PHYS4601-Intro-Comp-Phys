@@ -3,7 +3,9 @@
                 INTEGER, INTENT(IN) :: NUMCOMP, N
                 INTEGER :: XEXP, I
                 REAL :: DX, FCLOSEDLOOPFORMS, S, DIFF, X
+                REAL :: ERRORSUM, MEANERROR
                 REAL, ALLOCATABLE :: COMPARISONS(:)
+                CHARACTER(LEN=30) :: FILENAME
                 ALLOCATE(COMPARISONS(NUMCOMP))
 
 cc Adding one to number of comparisons to correct for the loss of the
@@ -33,10 +35,17 @@ cc Main DO loop. Continues while X is in domain (-1, 1)
 cc                        WRITE(*,*) S
 cc                        WRITE(*,*) FCLOSEDLOOPFORMS
                         COMPARISONS(I) = DIFF
+                        ERRORSUM = ERRORSUM + DIFF
                         X = X + DX
                         I = I + 1
                 ENDDO
-                OPEN(UNIT=10, FILE='comparisons.dat')
+
+                MEANERROR = ERRORSUM / NUMCOMP 
+                FILENAME = ' '
+                WRITE(*,*) 'MAE for N=', N, ': ', MEANERROR
+                WRITE(FILENAME, '(A,I0,A)') 'comparisons_', N, '.dat'
+                FILENAME = TRIM(ADJUSTL(FILENAME))
+                OPEN(UNIT=10, FILE=FILENAME)
                 DO I = 1, NUMCOMP
                         WRITE(10, *) I, COMPARISONS(I)
                 END DO
@@ -48,8 +57,9 @@ cc                        WRITE(*,*) FCLOSEDLOOPFORMS
         IMPLICIT NONE
 
         INTEGER :: N, NUMCOMP
-        NUMCOMP = 700
-        N = 2
-        CALL COMPARISONLOOP(NUMCOMP, N)
+        NUMCOMP = 20
+        DO N = 2, 20, 2
+                CALL COMPARISONLOOP(NUMCOMP, N)
+        END DO
 
         END PROGRAM EVALINFSERIES
