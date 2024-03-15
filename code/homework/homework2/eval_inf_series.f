@@ -1,3 +1,7 @@
+cc Created by Aiden Hammond
+cc Subroutine for finding the diff between actual and estimated values
+cc Created the subroutine beceause I couldn't otherwise create an array
+cc whose length was given by a variable
         SUBROUTINE COMPARISONLOOP(NUMCOMP, N)
                 IMPLICIT NONE
                 INTEGER, INTENT(IN) :: NUMCOMP, N
@@ -27,24 +31,31 @@ cc Check to make sure DX != 0, which would cause an infinite loop.
 cc Main DO loop. Continues while X is in domain (-1, 1)
                 DO WHILE(X < 1 .AND. I <= NUMCOMP)
                         S = 0.0
+cc DO loop for computing the estimated infinite series
                         DO XEXP = 0, N
                                 S = S + X**XEXP
                         ENDDO
+cc Compute the actual value to compare against
                         FCLOSEDLOOPFORMS = 1 / ( 1 - X )
-                        DIFF = S - FCLOSEDLOOPFORMS
-cc                        WRITE(*,*) S
-cc                        WRITE(*,*) FCLOSEDLOOPFORMS
+cc Find the absolute difference
+                        DIFF = ABS(S - FCLOSEDLOOPFORMS)
+cc Add to COMPARISONS list
                         COMPARISONS(I) = DIFF
+cc Add sum to ERRORSUM
                         ERRORSUM = ERRORSUM + DIFF
+cc Increment X and I
                         X = X + DX
                         I = I + 1
                 ENDDO
-
+cc Find and print MEANERROR
                 MEANERROR = ERRORSUM / NUMCOMP 
+                WRITE(*,*) MEANERROR
+cc Reset FILENAME (likely unnecessary)
                 FILENAME = ' '
-                WRITE(*,*) 'MAE for N=', N, ': ', MEANERROR
+cc Concat filename components
                 WRITE(FILENAME, '(A,I0,A)') 'comparisons_', N, '.dat'
                 FILENAME = TRIM(ADJUSTL(FILENAME))
+cc Write diff array to file
                 OPEN(UNIT=10, FILE=FILENAME)
                 DO I = 1, NUMCOMP
                         WRITE(10, *) I, COMPARISONS(I)
@@ -57,8 +68,9 @@ cc                        WRITE(*,*) FCLOSEDLOOPFORMS
         IMPLICIT NONE
 
         INTEGER :: N, NUMCOMP
+cc Number of comparisons
         NUMCOMP = 20
-        DO N = 2, 20, 2
+        DO N = 2, 100, 2
                 CALL COMPARISONLOOP(NUMCOMP, N)
         END DO
 

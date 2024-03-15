@@ -21,7 +21,7 @@ DATAFILE="comparisons.dat"
 OUTPUTFILE="comparisons_plot.png"
 gnuplot -persist <<-EOFMarker
     set title "Comparison of Series Approximation Error"
-    set xlabel "Index"
+    set xlabel "Comparisons"
     set ylabel "Difference"
     set grid
     set term png
