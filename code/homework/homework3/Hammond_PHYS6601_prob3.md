@@ -3,7 +3,7 @@
 # PHYS6601 Homework 3 - Radioactive Decay Simulation
 ## Introduction
 ### What is the problem?
-The problem we are facing is the radioactive decay of *N* nuclei of type *A* into nuclei of type *B* with time constant $$ \tau_A $$
+The problem we are facing is the radioactive decay of *N* nuclei of type *A* into nuclei of type *B* with time constant $\tau_A$
 ## Methods
 ### What algorithms did we use?
 ## Assumptions
